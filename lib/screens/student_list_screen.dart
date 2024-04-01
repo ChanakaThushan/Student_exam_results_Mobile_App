@@ -9,19 +9,6 @@ class Student {
   Student({required this.name, required this.id, required this.grade});
 }
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: StudentListScreen(),
-    );
-  }
-}
-
 class StudentListScreen extends StatefulWidget {
   @override
   _StudentListScreenState createState() => _StudentListScreenState();

@@ -5,6 +5,7 @@ class WelcomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+       
       ),
       body: Center(
         child: Column(
@@ -17,8 +18,8 @@ class WelcomeScreen extends StatelessWidget {
             SizedBox(height: 20.0), // Add some space below the text
             ElevatedButton(
               onPressed: () {
-                // Navigate to the StudentListScreen when the button is pressed
-                Navigator.pushNamed(context, '/studentList');
+                // Navigate to the RoleSelectionScreen when the button is pressed
+                Navigator.pushNamed(context, '/roleSelection');
               },
               child: Text('Go'), // Button label
             ),
