@@ -22,51 +22,62 @@ class _TeacherScreenState extends State<TeacherScreen> {
       appBar: AppBar(
         title: Text('Teacher Screen'),
       ),
-      body: ListView.builder(
-        itemCount: subjects.length,
-        itemBuilder: (context, index) {
-          final subject = subjects[index];
-          return ListTile(
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(subject.name),
-                Text('Marks: ${subject.marks}'),
-              ],
-            ),
-            trailing: IconButton(
-              icon: Icon(Icons.edit),
-              onPressed: () {
-                _editSubjectMarksDialog(context, index); // Show dialog to edit subject marks
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch, // Align children to stretch horizontally
+        children: [
+          Expanded(
+            child: ListView.builder(
+              itemCount: subjects.length,
+              itemBuilder: (context, index) {
+                final subject = subjects[index];
+                return ListTile(
+                  title: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(subject.name),
+                      Text('Marks: ${subject.marks}'),
+                    ],
+                  ),
+                  trailing: IconButton(
+                    icon: Icon(Icons.edit),
+                    onPressed: () {
+                      _editSubjectMarksDialog(context, index); // Show dialog to edit subject marks
+                    },
+                  ),
+                );
               },
             ),
-          );
-        },
+          ),
+          SizedBox(height: 10), // Adjusted space between list and buttons
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center, // Center items vertically
+              children: [
+                ElevatedButton(
+                  onPressed: _calculateAverage,
+                  child: Text('Calculate Average'),
+                ),
+                SizedBox(height: 10),
+                Text(
+                  'Total Average: $totalAverage',
+                  style: TextStyle(fontSize: 16),
+                  textAlign: TextAlign.center, // Center text horizontally
+                ),
+                SizedBox(height: 10),
+                ElevatedButton(
+                  onPressed: _saveDetails,
+                  child: Text('Save'),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
           _addSubjectDialog(context); // Show dialog to add subject
         },
-      ),
-      bottomNavigationBar: BottomAppBar(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            ElevatedButton(
-              onPressed: _calculateAverage,
-              child: Text('Calculate Average'),
-            ),
-            Text(
-              'Total Average: $totalAverage',
-              style: TextStyle(fontSize: 16),
-            ),
-            ElevatedButton(
-              onPressed: _saveDetails,
-              child: Text('Save'),
-            ),
-          ],
-        ),
       ),
     );
   }
